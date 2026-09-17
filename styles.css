@@ -233,3 +233,39 @@ body::before { content: ""; position: fixed; z-index: 100; inset: 0 auto auto 0;
   .reveal { opacity: 1; filter: none; transform: none; }
   .hero-image, .hero-copy { transform: none; opacity: 1; }
 }
+
+/* Selected clients */
+.brand-wall { padding: 40px 0 110px; overflow: hidden; border-bottom: 1px solid var(--line); }
+.brand-wall-heading { padding-top: 0; padding-bottom: 58px; display: grid; grid-template-columns: minmax(220px,.5fr) 1.5fr; align-items: end; }
+.brand-wall-heading .section-index { margin: 0 0 8px; }
+.brand-wall-heading h2 { font-size: clamp(3rem,6.2vw,5.9rem); }
+.logo-marquee { position: relative; width: 100%; overflow: hidden; padding: 32px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.logo-marquee::before, .logo-marquee::after { content: ""; position: absolute; z-index: 2; top: 0; bottom: 0; width: min(14vw,180px); pointer-events: none; }
+.logo-marquee::before { left: 0; background: linear-gradient(90deg,var(--bg),transparent); }
+.logo-marquee::after { right: 0; background: linear-gradient(-90deg,var(--bg),transparent); }
+.logo-track { display: flex; width: max-content; animation: logo-scroll 42s linear infinite; }
+.logo-marquee:hover .logo-track { animation-play-state: paused; }
+.logo-set { display: flex; align-items: center; gap: 78px; padding-right: 78px; }
+.client-logo { min-width: max-content; color: rgba(242,238,230,.66); font-family: "Arial Narrow",Arial,sans-serif; font-size: 1.55rem; font-weight: 800; line-height: .82; letter-spacing: -.03em; text-align: center; text-transform: uppercase; transition: color .4s ease, transform .5s var(--ease-out); }
+.client-logo small { font-size: .57em; letter-spacing: .06em; }
+.client-logo:hover { color: var(--text); transform: translateY(-3px); }
+.logo-sg { font-weight: 500; line-height: .9; text-transform: none; }
+.logo-manpower { font-style: italic; letter-spacing: -.07em; }
+.logo-oris { padding: 9px 14px 7px; border: 2px solid currentColor; font-family: Georgia,serif; letter-spacing: .08em; }
+.logo-cross { font-size: 1.25rem; line-height: .9; text-transform: none; }
+.logo-harley { font-size: 1.05rem; letter-spacing: -.04em; }
+.logo-eden { font-family: Georgia,serif; font-size: 1.25rem; letter-spacing: .08em; }
+.logo-tui { font-size: 2rem; letter-spacing: .03em; }
+@keyframes logo-scroll { to { transform: translateX(-50%); } }
+
+@media (max-width: 900px) {
+  .brand-wall { padding: 10px 0 84px; }
+  .brand-wall-heading { grid-template-columns: 1fr; gap: 24px; padding-bottom: 40px; }
+  .logo-set { gap: 52px; padding-right: 52px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-track { animation: none; }
+  .logo-marquee { overflow-x: auto; }
+  .logo-set[aria-hidden="true"] { display: none; }
+}
