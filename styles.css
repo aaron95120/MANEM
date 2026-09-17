@@ -139,6 +139,31 @@ section h2 { margin: 0; font-size: clamp(3rem, 6.2vw, 5.9rem); line-height: .9; 
 .contact-actions a { border-bottom: 1px solid rgba(23,21,18,.35); }
 footer { width: var(--shell); margin: 0 auto; padding: 30px 0 50px; display: flex; justify-content: space-between; color: var(--muted); font-size: .68rem; letter-spacing: .11em; text-transform: uppercase; }
 
+.postproduction { border-top: 1px solid var(--line); }
+.postproduction-head { display: grid; grid-template-columns: minmax(0,1.4fr) minmax(300px,.6fr); gap: 80px; align-items: end; margin-bottom: 64px; }
+.postproduction-intro p { margin: 0; color: var(--muted); font-size: 1rem; line-height: 1.75; }
+.postproduction-intro p:first-child { color: var(--text); margin-bottom: 14px; }
+.postproduction-marquee { position: relative; width: 100vw; left: 50%; margin: 0 0 82px -50vw; padding: 24px 0; overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.postproduction-marquee::before,.postproduction-marquee::after { content:""; position:absolute; z-index:2; top:0; bottom:0; width:min(12vw,160px); pointer-events:none; }
+.postproduction-marquee::before { left:0; background:linear-gradient(90deg,var(--bg),transparent); }
+.postproduction-marquee::after { right:0; background:linear-gradient(-90deg,var(--bg),transparent); }
+.postproduction-track { display:flex; width:max-content; animation:post-scroll 30s linear infinite; }
+.postproduction-marquee:hover .postproduction-track { animation-play-state:paused; }
+.postproduction-set { display:flex; align-items:center; gap:28px; padding-right:28px; font-family:"Arial Narrow",Arial,sans-serif; font-size:clamp(1.35rem,2.4vw,2.35rem); font-weight:700; letter-spacing:.02em; text-transform:uppercase; white-space:nowrap; }
+.postproduction-set i { color:var(--gold); font-style:normal; font-weight:400; }
+@keyframes post-scroll { to { transform:translateX(-50%); } }
+.postproduction-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:74px 28px; }
+.post-card { min-width:0; }
+.post-media { position:relative; width:100%; aspect-ratio:16/9; padding:0; border:0; overflow:hidden; background:var(--surface); cursor:pointer; }
+.post-media::after { content:""; position:absolute; inset:35% 0 0; background:linear-gradient(to top,rgba(18,17,15,.78),transparent); }
+.post-media img { width:100%; height:100%; object-fit:cover; filter:saturate(.62) contrast(1.05); transition:transform 1.1s var(--ease-out),filter .6s ease; }
+.post-media:hover img { transform:scale(1.035); filter:saturate(.95) contrast(1.05); }
+.post-media-texture img { filter:saturate(.4) contrast(1.15); }
+.post-meta { display:flex; gap:20px; padding:22px 0 0; border-top:1px solid var(--line); }
+.post-meta > span { color:var(--gold); font-size:.72rem; }
+.post-meta h3 { margin:0; font-family:"Arial Narrow",Arial,sans-serif; font-size:clamp(1.7rem,3vw,3rem); line-height:.95; letter-spacing:-.045em; text-transform:uppercase; }
+.post-meta p { margin:11px 0 0; color:var(--muted); font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; }
+
 .video-modal { width: min(1100px, calc(100vw - 32px)); max-width: none; padding: 0; color: var(--text); background: var(--bg); border: 1px solid var(--line); }
 .video-modal::backdrop { background: rgba(5,5,4,.87); backdrop-filter: blur(7px); }
 .modal-head, .modal-foot { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 18px 22px; }
@@ -178,6 +203,8 @@ footer { width: var(--shell); margin: 0 auto; padding: 30px 0 50px; display: fle
   .skill-grid { grid-template-columns: 1fr; }
   .skill-grid > div { min-height: 250px; }
   .contact-panel { align-items: flex-start; flex-direction: column; }
+  .postproduction-head { grid-template-columns:1fr; gap:32px; }
+  .postproduction-grid { grid-template-columns:1fr; gap:58px; }
   .contact-actions { align-items: flex-start; }
   .modal-foot span { display: none; }
 }
@@ -284,4 +311,7 @@ body::before { content: ""; position: fixed; z-index: 100; inset: 0 auto auto 0;
   .logo-track { animation: none; }
   .logo-marquee { overflow-x: auto; }
   .logo-set[aria-hidden="true"] { display: none; }
+  .postproduction-track { animation:none; }
+  .postproduction-marquee { overflow-x:auto; }
+  .postproduction-set[aria-hidden="true"] { display:none; }
 }
